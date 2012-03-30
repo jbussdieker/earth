@@ -159,7 +159,7 @@ void DrawPlanet(planet *planet) {
 	float draw_x = planet->x_au;
 	float draw_y = planet->y_au;
 
-	draw_size *= 50.0f;
+	draw_size *= 10000.0f;
 	if (planet == &planets[0]) {
 		draw_size /= 10.0f;
 	}
@@ -168,18 +168,11 @@ void DrawPlanet(planet *planet) {
 	glMaterialfv(GL_FRONT, GL_SPECULAR, planet->color);
 
 	glRotatef(speed, 0.0f, 0.0f, 0.001f);
-	glTranslatef(draw_x, draw_y, 0.0f);
-	glutSolidSphere(draw_size, 20, 20);
-	glTranslatef(-draw_x, -draw_y, 0.0f);
+	//glTranslatef(draw_x, draw_y, 0.0f);
+	glutSolidSphere(draw_size, 80, 80);
+	//glTranslatef(-draw_x, -draw_y, 0.0f);
 	glRotatef(speed, 0.0f, 0.0f, -0.001f);
 
-}
-
-void DrawPlanets() {
-	int i;
-	for (i = 0; i < sizeof(planets) / sizeof(planet); i++) {
-		DrawPlanet(&planets[i]);
-	}
 }
 
 void DrawGLScene()
@@ -193,7 +186,7 @@ void DrawGLScene()
 	glRotatef(-65.0f+pitch, 1.0f, 0.0f, 0.0f);
 
 	// Scene
-	DrawPlanets();
+	DrawPlanet(&planets[3]);
 
     yrot+=0.001f; // TODO: Computer speed dependent
 
