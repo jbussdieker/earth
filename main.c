@@ -1,6 +1,13 @@
-#include <GL/glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#ifdef __APPLE__
+	#include <OpenGL/gl.h>
+	#include <OpenGL/glu.h>
+	#include <GLUT/glut.h>
+#else
+	#include <GL/glut.h>
+	#include <GL/gl.h>
+	#include <GL/glu.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -147,7 +154,7 @@ void DrawPlanet(planet *planet) {
 	if (planet->avg_dist > 0.0f) {
 		speed /= planet->avg_dist;
 	}
-	draw_size = (double)planet->diameter_km / 149597870.0d;
+	draw_size = (double)planet->diameter_km / 149597870.0;
 
 	float draw_x = planet->x_au;
 	float draw_y = planet->y_au;
